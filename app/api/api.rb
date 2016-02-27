@@ -1,3 +1,6 @@
+Dir["./app/parsers/*.rb"].each { |f| require f }
+Dir["./app/policies/*.rb"].each { |f| require f }
+
 module API
   class Root < Grape::API
     # prefix 'api'
@@ -25,7 +28,7 @@ module API
     end
 
     rescue_from :all do |e|
-      # API.logger.error "[FATAL] rescued from API #{e.class.name}: #{e.to_s} in #{e.backtrace.first}"
+      puts "[FATAL] rescued from API #{e.class.name}: #{e.to_s} in #{e.backtrace.first}"
       puts e.message
       rack_response({ error: e.message }.to_json, 500, CORS_HEADERS)
     end
