@@ -15,18 +15,18 @@ module API
 
 
     error_formatter :json, lambda { |message, backtrace, options, env|
-      # API.logger.error "<====== Returning: #{message}"
+      puts "<====== Returning: #{message}"
       {error: message}.to_json
     }
 
     rescue_from Grape::Exceptions::ValidationErrors do |e|
-      # API.logger.error "<====== Returning: #{e.message}"
+      puts "<====== Returning: #{e.message}"
       rack_response({ error: e.message }.to_json, 406, CORS_HEADERS)
     end
 
     rescue_from :all do |e|
       # API.logger.error "[FATAL] rescued from API #{e.class.name}: #{e.to_s} in #{e.backtrace.first}"
-      # API.logger.error e.message
+      puts e.message
       rack_response({ error: e.message }.to_json, 500, CORS_HEADERS)
     end
 

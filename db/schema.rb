@@ -17,11 +17,13 @@ ActiveRecord::Schema.define(version: 20160227113847) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "books", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
-    t.string   "title"
-    t.integer  "number_of_pages"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+  create_table "links", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "url",                        null: false
+    t.string   "shorten",                    null: false
+    t.datetime "last_seen"
+    t.integer  "redirect_count", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
