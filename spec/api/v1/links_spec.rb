@@ -17,10 +17,10 @@ describe API::V1::Links do
     end
   end
 
-  describe "GET /v1/links" do
+  describe "GET /links" do
 
     it "returns all links" do
-      get "/v1/links"
+      get "/links"
 
       expect(last_response.status).to match 200
 
@@ -30,7 +30,7 @@ describe API::V1::Links do
 
   end
 
-  describe "POST /v1/shorten" do
+  describe "POST /shorten" do
 
     let(:build_link) { FactoryGirl.build(:link) }
     let(:my_shortcode)  { "000000" }
@@ -41,7 +41,7 @@ describe API::V1::Links do
         shortcode: my_shortcode
       }.to_json
 
-      post "/v1/shorten", params, base_headers
+      post "/shorten", params, base_headers
 
       # puts hash_response_body
       expect(last_response.status).to match 201
@@ -56,7 +56,7 @@ describe API::V1::Links do
         shortcode: build_link.shortcode
       }.to_json
 
-      post "/v1/shorten", params, base_headers
+      post "/shorten", params, base_headers
 
       # puts hash_response_body
       expect(last_response.status).to match 400
@@ -70,7 +70,7 @@ describe API::V1::Links do
         shortcode: 'short1'
       }.to_json
 
-      post "/v1/shorten", params, base_headers
+      post "/shorten", params, base_headers
 
       # puts hash_response_body
       expect(last_response.status).to match 409
@@ -84,7 +84,7 @@ describe API::V1::Links do
         shortcode: "#3!123?::"
       }.to_json
 
-      post "/v1/shorten", params, base_headers
+      post "/shorten", params, base_headers
 
       # puts hash_response_body
       expect(last_response.status).to match 422
@@ -92,7 +92,19 @@ describe API::V1::Links do
       expect(hash_response_body["error"]).not_to be nil
     end
 
-
   end
+
+
+  describe "GET /" do
+    it "returns all links" do
+      get "/"
+
+      expect(last_response.status).to match 200
+
+      expect(hash_response_body).not_to be nil
+      expect(hash_response_body.size).to match 1
+    end
+  end
+
 
 end

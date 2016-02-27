@@ -29,6 +29,16 @@ module API
         end
       end
 
+
+
+      resource '' do
+        get '', :rabl => "v1/links/all.rabl" do
+          @links = Link.all
+        end
+      end
+
+
+
     end
   end
 end
