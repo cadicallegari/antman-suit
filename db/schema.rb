@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160227113847) do
 
   create_table "links", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "url",                        null: false
-    t.string   "shorten",                    null: false
+    t.string   "shortcode",                  null: false
     t.datetime "last_seen"
     t.integer  "redirect_count", default: 0
     t.datetime "created_at",                 null: false

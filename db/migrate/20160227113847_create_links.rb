@@ -1,8 +1,8 @@
 class CreateLinks < ActiveRecord::Migration
   def change
     create_table :links, id: :uuid do |t|
-      t.string   :url,      null: false
-      t.string   :shorten,  null: false
+      t.string   :url,        null: false
+      t.string   :shortcode, null: false
       t.datetime :last_seen
       t.integer  :redirect_count, default: 0
 
