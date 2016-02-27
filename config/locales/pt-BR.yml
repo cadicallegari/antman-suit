@@ -30,6 +30,12 @@ pt-BR:
     cannot_remove: O item não pode ser removido
     cannot_be_blank: não pode ficar em branco
 
+
+    link:
+      empty_url: url vazia
+      unavaliable_shortcode: unavaliable shortcode
+      invalid_shortcode: invalid shortcode
+
   activerecord:
     models:
       book: Livro
