@@ -4,7 +4,6 @@ module Police
     def initialize(obj)
       @obj = obj
       @obj.valid?
-      puts @obj.errors.full_messages
     end
 
     def has_url?

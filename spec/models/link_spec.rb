@@ -7,7 +7,7 @@ describe Link do
   subject { @link }
 
   it { should respond_to(:url) }
-  it { should respond_to(:shorten) }
+  it { should respond_to(:shortcode) }
   it { should respond_to(:last_seen) }
   it { should respond_to(:redirect_count) }
 
@@ -15,8 +15,8 @@ describe Link do
     expect(@link.url).to match 'http://www.test.url'
   end
 
-  it "shorten returns a string" do
-    expect(@link.shorten).to match 'shorte'
+  it "shortcode returns a string" do
+    expect(@link.shortcode).to match 'shorte'
   end
 
   it "last_seen returns nil" do
@@ -27,15 +27,15 @@ describe Link do
     expect(@link.redirect_count).to match 0
   end
 
-  it "shorten should have 6" do
-    expect(FactoryGirl.build(:link, shorten: "123456")).to      be_valid
-    expect(FactoryGirl.build(:link, shorten: "1234")).not_to    be_valid
-    expect(FactoryGirl.build(:link, shorten: "1234567")).not_to be_valid
+  it "shortcode should have 6" do
+    expect(FactoryGirl.build(:link, shortcode: "123456")).to      be_valid
+    expect(FactoryGirl.build(:link, shortcode: "1234")).not_to    be_valid
+    expect(FactoryGirl.build(:link, shortcode: "1234567")).not_to be_valid
   end
 
-  it "should raise recordinvalid without shorten" do
+  it "should raise recordinvalid without shortcode" do
     expect {
-      FactoryGirl.create :link, shorten: nil
+      FactoryGirl.create :link, shortcode: nil
     }.to raise_error(ActiveRecord::RecordInvalid)
   end
 

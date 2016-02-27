@@ -1,0 +1,3 @@
+object @link
+
+attributes :shortcode
