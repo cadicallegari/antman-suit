@@ -5,8 +5,8 @@ default: &default
   password: postgres
   pool: 20
   timeout: 5000
-  host: <%= ENV['ANTMANSUIT_POSTGRES_1_PORT_5432_TCP_ADDR'] %>
-  port: <%= ENV['ANTMANSUIT_POSTGRES_1_PORT_5432_TCP_PORT'] %>
+  host: <%= ENV['ANTMANSUIT_POSTGRES_1_PORT_5432_TCP_ADDR'] || "localhost" %>
+  port: <%= ENV['ANTMANSUIT_POSTGRES_1_PORT_5432_TCP_PORT'] || "5432" %>
 
 development:
   <<: *default

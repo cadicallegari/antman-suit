@@ -7,6 +7,13 @@ app:
     - "3000:3000"
   links:
     - postgres
+test:
+  build: .
+  command: bundle exec rspec
+  volumes:
+    - .:/app
+  links:
+    - postgres
 postgres:
   image: postgres:9.4
   ports:
