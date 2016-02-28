@@ -43,14 +43,19 @@ module API
           end
 
           get '' do
-
+            @link.update_attributes(
+              last_seen: DateTime.now,
+              redirect_count: @link.redirect_count + 1
+            )
             redirect @link.url
           end
+
+
+          get :stats, :rabl => "v1/links/status.rabl" do
+          end
+
         end
-
       end
-
-
 
     end
   end

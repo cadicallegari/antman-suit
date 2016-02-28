@@ -95,12 +95,11 @@ describe API::V1::Links do
   end
 
 
+  let(:url) { "http://www.google.com" }
+  let(:code) { "google" }
+  let(:build_link) { FactoryGirl.create(:link, url: url, shortcode: code) }
 
   describe "GET /:code" do
-
-    let(:url) { "http://www.google.com" }
-    let(:code) { "google" }
-    let(:build_link) { FactoryGirl.create(:link, url: url, shortcode: code) }
 
     it "returns all links" do
       build_link
@@ -112,6 +111,26 @@ describe API::V1::Links do
       expect(last_response.headers["Location"]).to match url
     end
   end
+
+
+  describe "GET /:code/stats" do
+
+    it "returns all links" do
+      build_link
+
+      get "/#{code}/stats"
+      expect(hash_response_body["redirectCount"]).to match 0
+
+      get "/#{code}"
+      get "/#{code}/stats"
+      expect(hash_response_body["redirectCount"]).to match 1
+
+      get "/#{code}"
+      get "/#{code}/stats"
+      expect(hash_response_body["redirectCount"]).to match 2
+    end
+  end
+
 
 
 end
