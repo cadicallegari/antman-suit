@@ -50,7 +50,6 @@ module API
             redirect @link.url
           end
 
-
           get :stats, :rabl => "v1/links/status.rabl" do
           end
 

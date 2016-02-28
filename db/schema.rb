@@ -26,4 +26,6 @@ ActiveRecord::Schema.define(version: 20160227113847) do
     t.datetime "updated_at",                 null: false
   end
 
+  add_index "links", ["shortcode"], name: "index_links_on_shortcode", using: :btree
+
 end
