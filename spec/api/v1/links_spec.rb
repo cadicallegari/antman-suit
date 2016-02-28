@@ -120,14 +120,20 @@ describe API::V1::Links do
 
       get "/#{code}/stats"
       expect(hash_response_body["redirectCount"]).to match 0
+      expect(hash_response_body["startDate"]).not_to be_nil
+      expect(hash_response_body["lastSeenDate"]).to be_nil
 
       get "/#{code}"
       get "/#{code}/stats"
       expect(hash_response_body["redirectCount"]).to match 1
+      expect(hash_response_body["startDate"]).not_to be_nil
+      expect(hash_response_body["lastSeenDate"]).not_to be_nil
 
       get "/#{code}"
       get "/#{code}/stats"
       expect(hash_response_body["redirectCount"]).to match 2
+      expect(hash_response_body["startDate"]).not_to be_nil
+      expect(hash_response_body["lastSeenDate"]).not_to be_nil
     end
   end
 
