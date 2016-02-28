@@ -95,14 +95,21 @@ describe API::V1::Links do
   end
 
 
-  describe "GET /" do
+
+  describe "GET /:code" do
+
+    let(:url) { "http://www.google.com" }
+    let(:code) { "google" }
+    let(:build_link) { FactoryGirl.create(:link, url: url, shortcode: code) }
+
     it "returns all links" do
-      get "/"
+      build_link
 
-      expect(last_response.status).to match 200
+      get "/#{code}"
 
-      expect(hash_response_body).not_to be nil
-      expect(hash_response_body.size).to match 1
+      expect(last_response.status).to match 302
+
+      expect(last_response.headers["Location"]).to match url
     end
   end
 

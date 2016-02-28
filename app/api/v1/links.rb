@@ -32,9 +32,22 @@ module API
 
 
       resource '' do
-        get '', :rabl => "v1/links/all.rabl" do
-          @links = Link.all
+        params do
+          requires :code, type: String, desc: "Shortcode"
         end
+        route_param :code do
+
+          before do
+            @link = Link.where(shortcode: params[:code]).first
+            error!(I18n.t('fails.not_found'), 404) if @link.nil?
+          end
+
+          get '' do
+
+            redirect @link.url
+          end
+        end
+
       end
 
 

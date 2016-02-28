@@ -22,14 +22,7 @@
 en:
 
   fails:
-    not_allowed: Você não pode fazer isto =/
-    not_found: Objeto não encontrado
-    unauthorized: Não autorizado!
-    invalid_params: Parametros inválidos
-    invalid_session: Sessão invalida
-    cannot_remove: O item não pode ser removido
-    cannot_be_blank: não pode ficar em branco
-
+    not_found: Not found
 
     link:
       empty_url: Empty URL
